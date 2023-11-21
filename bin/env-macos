@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# install python3 and tkinter
+# brew install python-tk@3.11
+# brew install python@3.11
+
+# tkinter on macos M2 is wacky I only got it to work through brew
+export PATH="/opt/homebrew/Cellar/python@3.11/3.11.6_1/bin:$PATH"
+
