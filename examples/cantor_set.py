@@ -7,15 +7,16 @@ from src.lsystem import LSystem
 koch_curve = LSystem(
     "F",
     {
-        "F": "F+F−F−F+F",
+        "F": "F+F-F-F+F",
     },
-    1,
+    3,
     {
-        "F": lambda t: t.forward(100),
+        "F": lambda t: t.forward(30),
         "+": lambda t: t.left(90),
         "-": lambda t: t.right(90)
-    }
-    
+    },
+    (-500, 0),
+    True
 )
 
 koch_curve.visualize()
