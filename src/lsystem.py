@@ -1,7 +1,7 @@
 
 
-from turtle import Turtle
-from typing import Callable, Dict
+import turtle as turtle
+from typing import Callable, Dict, Optional
 
 class LSystem:
 
@@ -19,12 +19,54 @@ class LSystem:
             start: str,
             rules: Dict[str, str],
             iterations: int,
-            visualization: Dict[str, Callable[[Turtle], None]]
+            visualizations: Optional[Dict[str, Callable[[turtle.Turtle], None]]] = None,
+            debug: bool = True
     ):
+        # copy over the init parameters
         self.start = start
         self.rules = rules
         self.iterations = iterations
-        self.visualization = visualization
+        self.visualizations = visualizations
+        self.debug = debug
 
-    def visualize():
-        pass
+        # define defaults actions
+        self.no_visualize: Callable[[turtle.Turtle], None] = lambda x: None
+
+        # intialize the visualization environment if needed
+        if self.visualizations:
+            turtle.setup()
+            self.vis_turtle = turtle.Turtle()
+            self.vis_screen = turtle.Screen()
+
+            self.vis_turtle.color(0.0, 0.0, 0.0)
+            self.vis_turtle.pencolor(0.0, 0.0, 0.0)
+
+    def visualize(self, cur_string: str = None, iteration: int = 0):
+        cur_string = cur_string or self.start
+        
+        # apply visualizations
+        if self.visualizations:
+            for char in cur_string:
+                action = self.visualizations.get(char, self.no_visualize)
+                action(self.vis_turtle)
+
+        if iteration < self.iterations:
+            # apply the rewrite rules
+            new_string: str = ""
+            for char in cur_string:
+                new_string += self.rules.get(char, char)
+
+            # print debug information on transformations
+            if self.debug:
+                if iteration == 0:
+                    print("-" * 100)
+                print(f"||Iteration: {iteration} || Value || {new_string} ||")
+                if iteration == self.iterations:
+                    print("-" * 100)
+            
+            # go to the next iteration
+            self.visualize(new_string, iteration + 1)
+        else:
+            # make the python turtle GUI come up
+            if self.visualizations:
+                self.vis_screen.exitonclick()
