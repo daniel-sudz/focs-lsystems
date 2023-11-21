@@ -5,7 +5,7 @@ A final project for Foundations of Computer Science at Olin College of Engineeri
 ## L-systems vs Grammers
 
 #### Context-free case
-At each iteration an L-system will apply each rule as many times as possible. A traditional grammer, on the over hand, will apply one rule at a time at each iteration. This can make a difference in practice for example: 
+At each iteration an L-system will apply each rule as many times as possible. A traditional grammer, on the other hand, will apply one rule at a time at each iteration. This can make a difference in practice for example: 
 
 <table>
     <td colspan="2">Traditional Grammer Example</td>
@@ -23,7 +23,7 @@ At each iteration an L-system will apply each rule as many times as possible. A 
   </tr>
   <tr>
     <td>Rules</td>
-    <td> $$S \rightarrow SS$$ </td>
+    <td> $$\{S \rightarrow SS\}$$ </td>
   </tr>
      <tr>
     <td>Language</td>
@@ -48,7 +48,7 @@ At each iteration an L-system will apply each rule as many times as possible. A 
   </tr>
   <tr>
     <td>Rules</td>
-    <td> $$S \rightarrow SS$$ </td>
+    <td> $$\{S \rightarrow SS\}$$ </td>
   </tr>
      <tr>
     <td>Language</td>
