@@ -32,7 +32,8 @@ sierpinski_triangle = LSystem(
         "+": lambda t: t.left(120),
         "-": lambda t: t.right(120)
     },
-    render_start_pos=(-400, 300),
+    render_start_pos=(-300, -250),
+    render_heading=90,
     debug=True
 )
 

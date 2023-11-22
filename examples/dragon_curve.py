@@ -21,7 +21,8 @@ dragon_curve = LSystem(
         "+": lambda t: t.left(90),
         "-": lambda t: t.right(90)
     },
-    render_start_pos=(-200, -100),
+    render_start_pos=(-200, 0),
+    render_heading=270,
     debug=True
 )
 

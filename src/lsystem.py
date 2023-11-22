@@ -5,7 +5,7 @@ from typing import Callable, Dict, Optional
 class LSystem:
 
     """
-        Creates a Lsystem with desired parameters below:
+        Creates a Lsystem with the desired parameters
 
         @param start: the starting string for the 0th iteration
         @param rules: the production rules for rewriting a string
@@ -14,6 +14,7 @@ class LSystem:
         on each character change
         @param render_start_pos: a tuple for the start coordinates (int, int)
         for rendering the visualization
+        @param render_heading: sets the orientation angle of the turtle
         @param debug: boolean to choose whether to print debug info or not
     """
     def __init__(
@@ -23,6 +24,7 @@ class LSystem:
             iterations: int,
             visualizations: Optional[Dict[str, Callable[[turtle.Turtle], None]]] = None,
             render_start_pos: tuple[int, int] = (0, 0),
+            render_heading: int = 0,
             debug: bool = True
     ):
         # copy over the init parameters
@@ -49,6 +51,7 @@ class LSystem:
             # set turtle starting position
             self.vis_turtle.penup()
             self.vis_turtle.setpos(render_start_pos)
+            self.vis_turtle.setheading(render_heading)
 
             # set turtle properties
             self.vis_turtle.pendown()
