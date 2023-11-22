@@ -1,10 +1,25 @@
-import turtle as turtle
-from typing import Callable, Dict, Optional
+import turtle
+import random
+from typing import List, Tuple, Dict, Optional, Callable
 
 
-class LSystem:
+def choose_random_rule(rules: List[Tuple[str, float]]) -> str:
+    total_prob = sum(prob for _, prob in rules)
+    rand_num = random.uniform(0, total_prob)
+    cumulative_prob = 0
+
+    for rule, prob in rules:
+        cumulative_prob += prob
+        if rand_num <= cumulative_prob:
+            return rule
+
+    # This should not happen, but in case of rounding errors
+    return rules[-1][0]
+
+
+class StochasticLSystem:
     """
-    Creates a Lsystem with the desired parameters
+    Creates a Stochastic Lsystem with the desired parameters
 
     @param start: the starting string for the 0th iteration
     @param rules: the production rules for rewriting a string
@@ -19,48 +34,36 @@ class LSystem:
     def __init__(
             self,
             start: str,
-            rules: Dict[str, str],
+            rules: Dict[str, List[Tuple[str, float]]],
             iterations: int,
             visualizations: Optional[Dict[str, Callable[[turtle.Turtle], None]]] = None,
-            render_start_pos: tuple[int, int] = (0, 0),
+            render_start_pos: Tuple[int, int] = (0, 0),
             render_heading: int = 0,
             debug: bool = True
     ):
-        # copy over the init parameters
         self.start = start
         self.rules = rules
         self.iterations = iterations
         self.visualizations = visualizations
         self.debug = debug
+        self.vis_turtle = turtle.Turtle()
+        self.vis_screen = turtle.Screen()
 
-        # define defaults actions
-        self.no_visualize: Callable[[turtle.Turtle], None] = lambda x: None
+        self._initialize_turtle(render_start_pos, render_heading)
 
-        # initialize the visualization environment if needed
-        if self.visualizations:
-            # create the turtle
-            turtle.setup()
-            self.vis_turtle = turtle.Turtle()
-            self.vis_screen = turtle.Screen()
-
-            # modify speed and delay as desired
-            self.vis_turtle.speed(0)  # 0 (fastest) - 10 (slowest)
-            self.vis_screen.delay(0)
-
-            # set turtle starting position and heading
-            self.vis_turtle.penup()
-            self.vis_turtle.setpos(render_start_pos)
-            self.vis_turtle.setheading(render_heading)
-
-            # set turtle properties
-            self.vis_turtle.pendown()
-            self.vis_turtle.color(0.0, 0.0, 0.0)
-            self.vis_turtle.pencolor(0.0, 0.0, 0.0)
+    def _initialize_turtle(self, start_pos, heading):
+        self.vis_turtle.speed(0)
+        self.vis_screen.delay(0)
+        self.vis_turtle.penup()
+        self.vis_turtle.setpos(start_pos)
+        self.vis_turtle.setheading(heading)
+        self.vis_turtle.pendown()
+        self.vis_turtle.color(0.0, 0.0, 0.0)
+        self.vis_turtle.pencolor(0.0, 0.0, 0.0)
 
     def visualize(self, cur_string: str = None, iteration: int = 0):
         cur_string = cur_string or self.start
 
-        # print debug information on transformations
         if self.debug:
             if iteration == 0:
                 print("-" * 100)
@@ -69,19 +72,20 @@ class LSystem:
                 print("-" * 100)
 
         if iteration < self.iterations:
-            # apply the rewrite rules
-            new_string: str = ""
-            for char in cur_string:
-                new_string += self.rules.get(char, char)
-
-            # go to the next iteration
+            new_string = self.apply_stochastic_rules(cur_string)
             self.visualize(new_string, iteration + 1)
         else:
             if self.visualizations:
-                # apply visualizations
                 for char in cur_string:
-                    action = self.visualizations.get(char, self.no_visualize)
+                    action = self.visualizations.get(char, self.visualize)
                     action(self.vis_turtle)
 
-                # make the GUI come up
                 self.vis_screen.exitonclick()
+
+    def apply_stochastic_rules(self, cur_string: str) -> str:
+        new_string = ""
+        for char in cur_string:
+            rule = self.rules.get(char, [(char, 1.0)])
+            new_string += choose_random_rule(rule)
+
+        return new_string

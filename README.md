@@ -8,8 +8,8 @@ Implementing the L-system rewrite: https://en.wikipedia.org/wiki/L-system.
 
 ## L-systems vs Grammars
 
-#### Context-free case
-At each iteration an L-system will apply each rule as many times as possible. A traditional grammar, on the other hand, will apply one rule at a time at each iteration. This can make a difference in practice for example: 
+### Context-free case
+At each iteration, an L-system will apply each rule as many times as possible. A traditional grammar, on the other hand, will apply one rule at a time at each iteration. This can make a difference in practice for example: 
 
 <table>
     <td colspan="2">Traditional Grammar Example</td>
@@ -60,6 +60,11 @@ At each iteration an L-system will apply each rule as many times as possible. A 
   </tr>
 </table>
 
+
+### Stochastic Grammar L-systems
+
+[TODO] - explain stochastic grammars for L-systems
+
 ## Examples of L-systems
 
 ### Fractal Plant
@@ -75,6 +80,10 @@ rules  : (X → F+[[X]-X]-F[-FX]+X), (F → FF) <br>
 angle  : 25° <br>
 
 We initialize an empty stack first. Here, F means "draw forward", − means "turn right 25°", and + means "turn left 25°". X does not correspond to any drawing action and is used to control the evolution of the curve. The square bracket "[" corresponds to saving the current values for position and angle, and we push it to the top of the stack, and when the "]" token is encountered, we pop the stack and reset the position and angle. Every "[" comes before every "]" token.
+
+### Stochastic Fractal Plant
+
+[TODO] - add documentation and instruction set
 
 ### Koch Curve
 
