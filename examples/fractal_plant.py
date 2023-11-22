@@ -1,5 +1,3 @@
-import turtle
-
 from src.lsystem import LSystem
 
 """
@@ -12,7 +10,7 @@ https://en.wikipedia.org/wiki/L-system#Example_7:_fractal_plant
 stack = []
 
 
-# Helper functions to push/pop stack for fractal plant
+# Functions to push/pop stack for fractal plant
 def push_stack(t):
     stack.append((t.pos(), t.heading()))
 
