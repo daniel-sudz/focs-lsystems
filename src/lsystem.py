@@ -1,18 +1,19 @@
-
-
 import turtle as turtle
 from typing import Callable, Dict, Optional
+
 
 class LSystem:
 
     """
-        Creates an Lsystem defined by (start, rules, iterations, visualization)
+        Creates a Lsystem defined by (start, rules, iterations, visualization)
 
         @param start: the starting string for the 0th iteration
         @param rules: the production rules for rewriting a string
         @param iterations: the number of iterations to compute
-        @param visuations: a list of callbacks to perform a visualization
-        on each charecter change
+        @param visualizations: a list of callbacks to perform a visualization
+        on each character change
+        @param render_start_pos: a tuple for the start coordinates (int, int)
+        for rendering the visualization
     """
     def __init__(
             self,
@@ -33,12 +34,14 @@ class LSystem:
         # define defaults actions
         self.no_visualize: Callable[[turtle.Turtle], None] = lambda x: None
 
-        # intialize the visualization environment if needed
+        # initialize the visualization environment if needed
         if self.visualizations:
             # create the turtle
             turtle.setup()
             self.vis_turtle = turtle.Turtle()
             self.vis_screen = turtle.Screen()
+            self.vis_turtle.speed(0)
+            self.vis_screen.delay(0)
 
             # set turtle starting position
             self.vis_turtle.penup()
