@@ -20,6 +20,7 @@ koch_curve = LSystem(
         "-": lambda t: t.right(90)
     },
     render_start_pos=(-400, 0),
+    render_heading=0,
     debug=True
 )
 

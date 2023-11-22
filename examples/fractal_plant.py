@@ -38,7 +38,8 @@ fractal_plant = LSystem(
         "[": push_stack,
         "]": pop_stack
     },
-    render_start_pos=(-500, 200),
+    render_start_pos=(-250, -400),
+    render_heading=70,
     debug=True
 )
 
