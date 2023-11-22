@@ -1,10 +1,10 @@
 from src.lsystem import LSystem
 
 """
-    An implementation of the Cantor Set Visualization in our system
+    An implementation of the Koch curve Visualization in our system
     https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve
 """
-cantor_set = LSystem(
+koch_curve = LSystem(
     "F",
     {
         "F": "F+F-F-F+F",
@@ -19,4 +19,4 @@ cantor_set = LSystem(
     True
 )
 
-cantor_set.visualize()
+koch_curve.visualize()
