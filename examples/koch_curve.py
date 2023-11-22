@@ -1,8 +1,8 @@
 from src.lsystem import LSystem
 
 """
-    An implementation of the Koch curve Visualization in our system
-    https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve
+An implementation of the Koch curve Visualization in our system
+https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve
 """
 
 # Koch curve LSystem
