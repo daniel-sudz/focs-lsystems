@@ -4,19 +4,23 @@ from src.lsystem import LSystem
     An implementation of the Koch curve Visualization in our system
     https://en.wikipedia.org/wiki/L-system#Example_4:_Koch_curve
 """
+
+# Koch curve LSystem
 koch_curve = LSystem(
-    "F",
+    start="F",
+    rules=
     {
         "F": "F+F-F-F+F",
     },
-    3,
+    iterations=3,
+    visualizations=
     {
         "F": lambda t: t.forward(30),
         "+": lambda t: t.left(90),
         "-": lambda t: t.right(90)
     },
-    (-500, 0),
-    True
+    render_start_pos=(-400, 0),
+    debug=True
 )
 
 koch_curve.visualize()

@@ -5,7 +5,7 @@ from typing import Callable, Dict, Optional
 class LSystem:
 
     """
-        Creates a Lsystem defined by (start, rules, iterations, visualization)
+        Creates a Lsystem with desired parameters below:
 
         @param start: the starting string for the 0th iteration
         @param rules: the production rules for rewriting a string
@@ -14,6 +14,7 @@ class LSystem:
         on each character change
         @param render_start_pos: a tuple for the start coordinates (int, int)
         for rendering the visualization
+        @param debug: boolean to choose whether to print debug info or not
     """
     def __init__(
             self,
@@ -40,7 +41,9 @@ class LSystem:
             turtle.setup()
             self.vis_turtle = turtle.Turtle()
             self.vis_screen = turtle.Screen()
-            self.vis_turtle.speed(0)
+
+            # modify speed and delay as desired
+            self.vis_turtle.speed(0)  # 0 (fastest) - 10 (slowest)
             self.vis_screen.delay(0)
 
             # set turtle starting position
