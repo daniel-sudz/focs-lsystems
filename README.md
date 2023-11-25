@@ -63,7 +63,9 @@ At each iteration, an L-system will apply each rule as many times as possible. A
 
 ### Stochastic Grammar L-systems
 
-[TODO] - explain stochastic grammars for L-systems
+Stochastic Grammar involves introducing randomness into the production rules of L-systems.
+Deterministic L-systems have specific rules associated to it to have a unique replacement for every symbol, and stochastic L-systems
+add probabilities to these rules of replacement causing variability and randomness in the generation of grammar.
 
 ## Examples of L-systems
 
@@ -83,7 +85,20 @@ We initialize an empty stack first. Here, F means "draw forward", − means "tur
 
 ### Stochastic Fractal Plant
 
-[TODO] - add documentation and instruction set
+A stochastic fractal plant is a generated using stochastic (random) processes and fractal geometry. It incorporates randomness to simulate the natural variability found in plants, creating realistic and diverse virtual plant structures.
+
+**<u>Instruction set</u>** [[ref - Page 28 (Section 1.7)]](http://algorithmicbotany.org/papers/abop/abop.pdf)
+
+variables : F <br>
+constants : + − [ ] <br>
+start  :  F <br>
+rules  : <br>
+F --P(0.33)--> F[+F]F[-F]F, <br>
+F --P(0.33)--> F[+F]F, <br>
+F --P(0.34)--> F[-F]F <br>
+angle  : 25° <br>
+
+Here, F means "draw forward", − means "turn right 25°", and + means "turn left 25°". The square bracket "[" corresponds to saving the current values for position and angle, and we push it to the top of the stack, and when the "]" token is encountered, we pop the stack and reset the position and angle. Every "[" comes before every "]" token.
 
 ### Koch Curve
 

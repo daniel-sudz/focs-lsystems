@@ -12,10 +12,10 @@ koch_curve = LSystem(
     {
         "F": "F+F-F-F+F",
     },
-    iterations=3,
+    iterations=4,
     visualizations=
     {
-        "F": lambda t: t.forward(30),
+        "F": lambda t: t.forward(10),
         "+": lambda t: t.left(90),
         "-": lambda t: t.right(90)
     },
