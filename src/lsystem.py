@@ -1,5 +1,14 @@
+import io
 import turtle as turtle
+import warnings
 from typing import Callable, Dict, Optional
+import imageio
+import os
+from PIL import Image
+import numpy as np
+
+ghostscript_path = os.path.join(os.path.dirname(__file__), 'ghostscript_bin', 'gs')
+Image.GS_PROG = ghostscript_path
 
 
 class LSystem:
@@ -26,12 +35,14 @@ class LSystem:
             render_heading: int = 0,
             debug: bool = True
     ):
-        # copy over the init parameters
+        # cpy over the init parameters
         self.start = start
         self.rules = rules
         self.iterations = iterations
         self.visualizations = visualizations
         self.debug = debug
+        self.render_start_pos = render_start_pos
+        self.render_heading = render_heading
 
         # define defaults actions
         self.no_visualize: Callable[[turtle.Turtle], None] = lambda x: None
