@@ -1,3 +1,9 @@
+---
+header-includes:
+ - \usepackage{fvextra}
+ - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
 # L-systems
 A final project for Foundations of Computer Science (Fall 2023) at Olin College of Engineering 
 
