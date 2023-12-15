@@ -5,6 +5,10 @@ Daniel Sudzilouski and Sparsh Gupta
 
 Implementing the L-system rewrite: https://en.wikipedia.org/wiki/L-system.
 
+Implementation found at: https://github.com/daniel-sudz/focs-lsystems <br>
+Latest report found at: https://github.com/daniel-sudz/focs-lsystems/blob/main/docs/out.pdf <br>
+Presentation found at: https://github.com/daniel-sudz/focs-lsystems/blob/main/docs/L-Systems%20FOCS%20-%20Fall%2023.pdf
+
 ## What are L-systems?
 
 L-systems (also known as Lindenmayer systems) are a type of formal grammar that is capable of developing
