@@ -22,7 +22,7 @@ jobs:
           
       - name: Compile Report
         run: |
-          pandoc README.md -s -o out.pdf
+          pandoc README.md -s -o out.pdf --pdf-engine=xelatex
           
 
       - name: Push back PDF to repo
