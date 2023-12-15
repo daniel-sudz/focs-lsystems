@@ -94,7 +94,20 @@ class LSystem:
         if iteration < self.iterations:
             # apply the rewrite rules
             new_string: str = ""
-            for char in cur_string:
+
+            for idx, char in enumerate(cur_string):
+                production_rule = self.rules.get(char, ProductionRule(char, None, None))
+
+                # handle left_context
+                if production_rule.context_left:
+                    if (len(production_rule.context_left) > idx) or (cur_string[0:idx] != production_rule.context_left):
+                        continue
+
+                # handle right_context
+                if production_rule.context_right:
+                    if (len(production_rule.context_right) > (len(cur_string) - idx - 1)) or (cur_string[idx+1:len(cur_string)] != production_rule.context_right):
+                        continue
+                               
                 new_string += self.rules.get(char, ProductionRule(char, None, None)).rewrite_from
 
             # go to the next iteration
