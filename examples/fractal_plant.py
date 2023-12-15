@@ -1,4 +1,4 @@
-from src.lsystem import LSystem
+from src.lsystem import LSystem, ProductionRule
 
 """
 An implementation of the Fractal plant in our system
@@ -26,8 +26,8 @@ fractal_plant = LSystem(
     start="X",
     rules=
     {
-        "X": "F+[[X]-X]-F[-FX]+X",
-        "F": "FF"
+        "X": ProductionRule("F+[[X]-X]-F[-FX]+X", None, None),
+        "F": ProductionRule("FF", None, None)
     },
     iterations=6,
     visualizations=
