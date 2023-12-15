@@ -12,7 +12,7 @@ Image.GS_PROG = ghostscript_path
 
 class ProductionRule:
     """
-    Described a production rule of an Lsystem (can be context-sensitive or not)
+    Describe a production rule of an Lsystem (can be context-sensitive or not)
 
     @param from: the symbol to rewrite
     @param context_left: the context on the left (None if not-sensitive)
