@@ -1,0 +1,37 @@
+name: Compile Report
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install pandoc
+        run: |
+          curl -L https://github.com/jgm/pandoc/releases/download/3.1.10/pandoc-3.1.10-1-amd64.deb -o pandoc.deb
+          sudo dpkg -i pandoc.deb
+          sudo apt-get install texlive-latex-base
+          
+      - name: Compile Report
+        run: |
+          pandoc README.md -s -o out.pdf
+          
+
+      - name: Push back PDF to repo
+        run: |
+          # configure git
+          git config --global user.email "<>"
+          git config --global user.name "Github Actions Bot"
+
+          # commit upstream
+          git add .
+          git commit -m "Updating Report"
+          git push origin main
