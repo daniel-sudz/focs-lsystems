@@ -24,7 +24,7 @@ sierpinski_triangle = LSystem(
         "F": "F-G+F+G-F",
         "G": "GG"
     },
-    iterations=6,
+    iterations=5,
     visualizations=
     {
         "F": lambda t: t.forward(distance),

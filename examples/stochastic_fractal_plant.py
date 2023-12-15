@@ -32,7 +32,7 @@ fractal_plant = StochasticLSystem(
             ("F[-F]F", 0.34)        # Probability 1/3
         ]
     },
-    iterations=6,
+    iterations=5,
     visualizations={
         "F": lambda t: t.forward(5),
         "+": lambda t: t.left(25),
