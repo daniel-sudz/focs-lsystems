@@ -1,4 +1,4 @@
-from src.lsystem import LSystem
+from src.lsystem import LSystem, ProductionRule
 
 """
 An implementation of the Sierpinski Triangle in our system
@@ -21,8 +21,8 @@ sierpinski_triangle = LSystem(
     start="F-F-F",
     rules=
     {
-        "F": "F-G+F+G-F",
-        "G": "GG"
+        "F": ProductionRule("F-G+F+G-F", None, None),
+        "G": ProductionRule("GG", None, None)
     },
     iterations=5,
     visualizations=

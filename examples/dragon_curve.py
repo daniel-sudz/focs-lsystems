@@ -1,4 +1,4 @@
-from src.lsystem import LSystem
+from src.lsystem import LSystem, ProductionRule
 
 """
 An implementation of the Dragon curve Visualization in our system
@@ -10,8 +10,8 @@ dragon_curve = LSystem(
     start="F",
     rules=
     {
-        "F": "F+G",
-        "G": "F-G"
+        "F": ProductionRule("F+G", None, None),
+        "G": ProductionRule("F-G", None, None)
     },
     iterations=10,
     visualizations=

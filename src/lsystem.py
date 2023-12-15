@@ -10,6 +10,18 @@ import numpy as np
 ghostscript_path = os.path.join(os.path.dirname(__file__), 'ghostscript_bin', 'gs')
 Image.GS_PROG = ghostscript_path
 
+class ProductionRule:
+    """
+    Described a production rule of an Lsystem (can be context-sensitive or not)
+
+    @param from: the symbol to rewrite
+    @param context_left: the context on the left (None if not-sensitive)
+    @param context_right: the context on the right (None if not-sensitive)
+    """
+    def __init__(self, rewrite_from: str, context_left: Optional[str], context_right: Optional[str]):
+        self.rewrite_from = rewrite_from
+        self.context_left = context_left
+        self.context_right = context_right
 
 class LSystem:
     """
@@ -28,7 +40,7 @@ class LSystem:
     def __init__(
             self,
             start: str,
-            rules: Dict[str, str],
+            rules: Dict[str, ProductionRule],
             iterations: int,
             visualizations: Optional[Dict[str, Callable[[turtle.Turtle], None]]] = None,
             render_start_pos: tuple[int, int] = (0, 0),
@@ -83,7 +95,7 @@ class LSystem:
             # apply the rewrite rules
             new_string: str = ""
             for char in cur_string:
-                new_string += self.rules.get(char, char)
+                new_string += self.rules.get(char, ProductionRule(char, None, None)).rewrite_from
 
             # go to the next iteration
             self.visualize(new_string, iteration + 1)

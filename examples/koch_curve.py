@@ -1,4 +1,4 @@
-from src.lsystem import LSystem
+from src.lsystem import LSystem, ProductionRule
 
 """
 An implementation of the Koch curve Visualization in our system
@@ -10,7 +10,7 @@ koch_curve = LSystem(
     start="F",
     rules=
     {
-        "F": "F+F-F-F+F",
+        "F": ProductionRule("F+F-F-F+F", None, None),
     },
     iterations=4,
     visualizations=
