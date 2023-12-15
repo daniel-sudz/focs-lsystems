@@ -175,7 +175,7 @@ If you're using an M-series Mac, then you can obtain it using homebrew (check th
 Let us look deeper into the [lsystem.py](https://github.com/daniel-sudz/focs-lsystems/blob/main/src/lsystem.py) that defines our primary L-system functionality.
 
 We define a class to encapsulate the concept of a production rule in L-systems. Production rules dictate how symbols are rewritten based on their context.
-```
+```python
 class ProductionRule:
     def __init__(self, rewrite_from: str, context_left: Optional[str], context_right: Optional[str]):
         self.rewrite_from = rewrite_from
@@ -184,7 +184,7 @@ class ProductionRule:
 ```
 Next, we define the class LSystem that encapsulates the parameters and generates the L-system visualizations using Turtle graphics.
 
-```
+```python
 class LSystem:
     def __init__(
             self,
@@ -198,19 +198,19 @@ class LSystem:
     ):
 ```
 Then, we can initialize the Turtle graphics setup by creating the turtle and setting up parameters like turtle speed, delay, start position, start heading, etc.
-```
+```python
 if self.visualizations:
 # ... (continued code)
 ```
 The `visualize` method recursively applies the production rules in each iteration and also vidualizes each iteration using the above Turtle graphics setup.
-```
+```python
 def visualize(self, cur_string: str = None, iteration: int = 0):
         # ... (continued code)
 ```
 
 The code for implementing stochastic [stochastic_lsystem.py](https://github.com/daniel-sudz/focs-lsystems/blob/main/src/stochastic_lsystem.py) is pretty similar including instantiating the class and the visualization method, however, it introduces one new function to choose a rule randomly and also has another method to apply stochastic rules. 
 
-```
+```python
 def choose_random_rule(rules: List[Tuple[str, float]]) -> str:
     total_prob = sum(prob for _, prob in rules)
     rand_num = random.uniform(0, total_prob)
@@ -227,7 +227,7 @@ def choose_random_rule(rules: List[Tuple[str, float]]) -> str:
 The above function basically selects a rule based on a predefined probability that the rule has. It first calculates the cumulative probabilities, generates a random number within that range, and returns the corresponding rule. 
 
 To supplement this function for stochastic grammar generation, we introduce another method in the StochasticLSystem class. The below method takes use of the above function to choose a random rule after it extracts a list of rules for each character, and return a new set of characters based on the randomness.
-```
+```python
  def apply_stochastic_rules(self, cur_string: str) -> str:
         new_string = ""
         for char in cur_string:
@@ -238,7 +238,7 @@ To supplement this function for stochastic grammar generation, we introduce anot
 ```
 
 Finally, in the `examples` directory, we instantiate the desired L-system and then input the desired parameters to generate and visualize the desired L-system example in the following format:
-```
+```python
 # Example L-system instantiation
 lsystem = LSystem(
     start="A",
