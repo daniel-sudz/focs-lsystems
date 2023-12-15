@@ -22,7 +22,8 @@ jobs:
           
       - name: Compile Report
         run: |
-          pandoc README.md -s -o out.pdf --pdf-engine=xelatex
+          cat README.md >> pandoc-render-includes.md
+          pandoc pandoc-render-includes.md -s -o out.pdf --pdf-engine=xelatex
           
 
       - name: Push back PDF to repo
@@ -32,6 +33,7 @@ jobs:
           git config --global user.name "Github Actions Bot"
 
           # commit upstream
-          git add .
+          git add out.pdf
           git commit -m "Updating Report"
+          git restore .
           git push origin main
