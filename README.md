@@ -28,32 +28,33 @@ represent instructions like branching, rotating, popping or pushing a stack, etc
 ## L-systems vs Grammars
 
 ### Context-free case
+
 At each iteration, an L-system will apply each rule as many times as possible. A traditional grammar, on the other hand, will apply one rule at a time at each iteration. This can make a difference in practice for example: 
 
 **<u>Traditional Grammar Example</u>**
 
-Start: $$S$$
+Start: S
 
-Terminals: $$\{S\}$$
+Terminals: {S}
 
-Non-Terminals: $$\{\}$$
+Non-Terminals: {}
 
-Rules: $$\{S \rightarrow SS\}$$
+Rules: {S → SS}
 
-Language: $$\{S, SS, SSS, SSS...\}$$
+Language: {S, SS, SSS, SSS...}
 
 
 **<u>L-system Grammar Example</u>**
 
-Start: $$S$$
+Start: S
 
-Terminals: $$\{S\}$$
+Terminals: {S}
 
-Non-Terminals: $$\{\}$$
+Non-Terminals: {}
 
-Rules: $$\{S \rightarrow SS\}$$
+Rules: {S → SS}
 
-Language:$$\{S, SS, SSSS, SSSSSSSS\}$$
+Language: {S, SS, SSSS, SSSSSSSS}
 
 
 ### Stochastic Grammar L-systems
